@@ -23,4 +23,9 @@ public class CalculatorTest {
 	public void testTwo() {
 		assertEquals(3, Calculator.add("1,2"));
 	}
+
+	@Test
+	public void testForArbitraryInput() {
+		assertEquals(13, Calculator.add("1,2,4,6"));
+	}
 }

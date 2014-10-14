@@ -9,11 +9,12 @@ public class Calculator {
 		} else
 		{
 			String[] numbers = text.split(",");
-			int calc = parse(numbers[0]);
-			if(numbers.length > 1)
+			int calc = 0;
+			for(int i = 0; i < numbers.length; i++)
 			{
-				calc += parse(numbers[1]);
+				calc += parse(numbers[i]);
 			}
+			
 			return calc;
 		}
 	}
