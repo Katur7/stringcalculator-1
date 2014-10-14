@@ -17,7 +17,22 @@ public class Calculator {
 				text = text.substring(2);				// Remove //
 				String[] temp = text.split("\n", 2);	// Split on first \n
 				delimitor = temp[0];
-				numbers = temp[1].split(delimitor + "|,|\n");
+				String[] delimArr = delimitor.split("(?!^)");
+				Set<String> delimSet = new HashSet<String>(Arrays.asList(delimArr));
+				String delimitors = "";
+				for(String str : delimSet){
+		            delimitors += "|[" + str + "]";
+		        }
+				delimitors = delimitors.substring(1);
+				numbers = temp[1].split(delimitors + "|,|\n");
+				List<String> list = new ArrayList<String>(Arrays.asList(numbers));
+				Iterator<String> i = list.iterator();
+				while(i.hasNext()) {
+					if(i.next().isEmpty()) {
+						i.remove();
+					}
+				}
+				numbers = list.toArray(new String[list.size()]);
 			} else
 			{
 				numbers = text.split(",|\n");

@@ -54,4 +54,9 @@ public class CalculatorTest {
 	public void testOver9000() {
 		assertEquals(2, Calculator.add("9000,2"));
 	}
+
+	@Test
+	public void testArbitraryMultipleDelimitor() {
+		assertEquals(10, Calculator.add("//***%%%%$$+\n1***2+3%4"));
+	}
 }
