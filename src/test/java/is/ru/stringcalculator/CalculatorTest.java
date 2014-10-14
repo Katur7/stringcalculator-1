@@ -33,4 +33,14 @@ public class CalculatorTest {
 	public void testSplitOnNewline() {
 		assertEquals(13, Calculator.add("1,2\n4\n6"));
 	}
+
+	@Test
+	public void testArbitraryDelimitor() {
+		assertEquals(13, Calculator.add("//;\n1,2;4\n6"));
+	}
+
+	@Test
+	public void testArbitraryDelimitor2() {
+		assertEquals(13, Calculator.add("//tt\n1,2tt4\n6"));
+	}
 }
