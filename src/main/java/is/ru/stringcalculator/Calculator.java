@@ -22,26 +22,8 @@ public class Calculator {
 			{
 				numbers = text.split(",|\n");
 			}
-
 			// Check for negatives
-			List<String> negatives = new ArrayList<String>();
-			for(int i = 0; i < numbers.length; i++)
-			{
-				if(numbers[i].matches("-.*"))
-				{
-					negatives.add(numbers[i]);
-				}
-			}
-
-			if(!negatives.isEmpty())
-			{
-				String neglist = negatives.get(0);
-				for(int i = 1; i < negatives.size(); i++)
-				{
-					neglist += "," + negatives.get(i);
-				}
-				throw new IllegalArgumentException("Negatives not allowed: " + neglist);
-			}
+			negativesBad(numbers);
 			
 			return calc(numbers);
 		}
@@ -61,5 +43,27 @@ public class Calculator {
 		}
 		
 		return calc;
+	}
+
+	private static void negativesBad(String[] numbers)
+	{
+		List<String> negatives = new ArrayList<String>();
+		for(int i = 0; i < numbers.length; i++)
+		{
+			if(numbers[i].matches("-.*"))
+			{
+				negatives.add(numbers[i]);
+			}
+		}
+
+		if(!negatives.isEmpty())
+		{
+			String neglist = negatives.get(0);
+			for(int i = 1; i < negatives.size(); i++)
+			{
+				neglist += "," + negatives.get(i);
+			}
+			throw new IllegalArgumentException("Negatives not allowed: " + neglist);
+		}
 	}
 }
