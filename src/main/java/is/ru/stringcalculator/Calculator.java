@@ -21,18 +21,23 @@ public class Calculator {
 				numbers = text.split(",|\n");
 			}
 			
-			int calc = 0;
-			for(int i = 0; i < numbers.length; i++)
-			{
-				calc += parse(numbers[i]);
-			}
-			
-			return calc;
+			return calc(numbers);
 		}
 	}
 
 	private static int parse(String c)
 	{
 		return Integer.parseInt(c);
+	}
+
+	private static int calc(String[] arr)
+	{
+		int calc = 0;
+		for(int i = 0; i < arr.length; i++)
+		{
+			calc += parse(arr[i]);
+		}
+		
+		return calc;
 	}
 }
