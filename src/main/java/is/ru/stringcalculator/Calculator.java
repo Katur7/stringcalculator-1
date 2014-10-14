@@ -8,7 +8,7 @@ public class Calculator {
 			return 0;
 		} else
 		{
-			String[] numbers = text.split(",");
+			String[] numbers = text.split(",|\n");
 			int calc = 0;
 			for(int i = 0; i < numbers.length; i++)
 			{

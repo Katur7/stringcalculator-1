@@ -28,4 +28,9 @@ public class CalculatorTest {
 	public void testForArbitraryInput() {
 		assertEquals(13, Calculator.add("1,2,4,6"));
 	}
+
+	@Test
+	public void testSplitOnNewline() {
+		assertEquals(13, Calculator.add("1,2\n4\n6"));
+	}
 }
