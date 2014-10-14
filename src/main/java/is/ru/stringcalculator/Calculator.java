@@ -39,7 +39,11 @@ public class Calculator {
 		int calc = 0;
 		for(int i = 0; i < arr.length; i++)
 		{
-			calc += parse(arr[i]);
+			int next = parse(arr[i]);
+			if(next <= 1000)
+			{
+				calc += next;
+			}
 		}
 		
 		return calc;

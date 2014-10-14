@@ -49,4 +49,9 @@ public class CalculatorTest {
 	    // act
 	    Calculator.add("-1,-2,3");
 	}
+
+	@Test
+	public void testOver9000() {
+		assertEquals(2, Calculator.add("9000,2"));
+	}
 }
