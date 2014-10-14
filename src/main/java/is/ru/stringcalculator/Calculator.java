@@ -9,12 +9,17 @@ public class Calculator {
 		} else
 		{
 			String[] numbers = text.split(",");
-			int calc = Integer.parseInt(numbers[0]);
+			int calc = parse(numbers[0]);
 			if(numbers.length > 1)
 			{
-				calc += Integer.parseInt(numbers[1]);
+				calc += parse(numbers[1]);
 			}
 			return calc;
 		}
+	}
+
+	private static int parse(String c)
+	{
+		return Integer.parseInt(c);
 	}
 }
