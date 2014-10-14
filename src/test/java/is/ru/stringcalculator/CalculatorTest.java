@@ -1,6 +1,6 @@
 package is.ru.stringcalculator;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CalculatorTest {
@@ -42,5 +42,11 @@ public class CalculatorTest {
 	@Test
 	public void testArbitraryDelimitor2() {
 		assertEquals(13, Calculator.add("//tt\n1,2tt4\n6"));
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testCatchEmAll() {
+	    // act
+	    Calculator.add("-1,-2,3");
 	}
 }

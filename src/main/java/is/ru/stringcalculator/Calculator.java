@@ -1,5 +1,7 @@
 package is.ru.stringcalculator;
 
+import java.util.*;
+
 public class Calculator {
 
 	public static int add(String text){
@@ -19,6 +21,26 @@ public class Calculator {
 			} else
 			{
 				numbers = text.split(",|\n");
+			}
+
+			// Check for negatives
+			List<String> negatives = new ArrayList<String>();
+			for(int i = 0; i < numbers.length; i++)
+			{
+				if(numbers[i].matches("-.*"))
+				{
+					negatives.add(numbers[i]);
+				}
+			}
+
+			if(!negatives.isEmpty())
+			{
+				String neglist = negatives.get(0);
+				for(int i = 1; i < negatives.size(); i++)
+				{
+					neglist += "," + negatives.get(i);
+				}
+				throw new IllegalArgumentException("Negatives not allowed: " + neglist);
 			}
 			
 			return calc(numbers);
