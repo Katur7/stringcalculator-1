@@ -10,33 +10,8 @@ public class Calculator {
 			return 0;
 		} else
 		{
-			String[] numbers = null;
-			String delimitor = "";
-			if(text.startsWith("//"))
-			{
-				text = text.substring(2);				// Remove //
-				String[] temp = text.split("\n", 2);	// Split on first \n
-				delimitor = temp[0];
-				String[] delimArr = delimitor.split("(?!^)");
-				Set<String> delimSet = new HashSet<String>(Arrays.asList(delimArr));
-				String delimitors = "";
-				for(String str : delimSet){
-		            delimitors += "|[" + str + "]";
-		        }
-				delimitors = delimitors.substring(1);
-				numbers = temp[1].split(delimitors + "|,|\n");
-				List<String> list = new ArrayList<String>(Arrays.asList(numbers));
-				Iterator<String> i = list.iterator();
-				while(i.hasNext()) {
-					if(i.next().isEmpty()) {
-						i.remove();
-					}
-				}
-				numbers = list.toArray(new String[list.size()]);
-			} else
-			{
-				numbers = text.split(",|\n");
-			}
+			String[] numbers = splitInput(text);
+			
 			// Check for negatives
 			negativesBad(numbers);
 			
@@ -83,6 +58,40 @@ public class Calculator {
 				neglist += "," + negatives.get(i);
 			}
 			throw new IllegalArgumentException("Negatives not allowed: " + neglist);
+		}
+	}
+
+	private static String[] splitInput(String text) {
+		String[] numbers = null;
+		if(text.startsWith("//")) {
+			String delimitor = "";
+			text = text.substring(2);				// Remove //
+			String[] temp = text.split("\n", 2);	// Split on first \n
+			delimitor = temp[0];
+			String[] delimArr = delimitor.split("(?!^)");	// Split into array by chars
+			// Remove dublicates
+			Set<String> delimSet = new HashSet<String>(Arrays.asList(delimArr));
+			String delimitors = "";
+			// Make regex
+			for(String str : delimSet){
+	            delimitors += "|[" + str + "]";
+	        }
+			delimitors = delimitors.substring(1);
+			// Split the input
+			numbers = temp[1].split(delimitors + "|,|\n");
+			// Remove empty elements
+			List<String> list = new ArrayList<String>(Arrays.asList(numbers));
+			Iterator<String> i = list.iterator();
+			while(i.hasNext()) {
+				if(i.next().isEmpty()) {
+					i.remove();
+				}
+			}
+			numbers = list.toArray(new String[list.size()]);
+			return numbers;
+		} else {
+			numbers = text.split(",|\n");
+			return numbers;
 		}
 	}
 }
